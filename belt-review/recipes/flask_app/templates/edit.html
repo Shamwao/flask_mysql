@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Edit Recipe</title>
+</head>
+<body>
+    <h2>Edit Recipe</h2>
+    <form action="/update_recipe/{{recipe.id}}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" name= "name" value="{{recipe.name}}">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" rows="3" value="description">{{recipe.description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="instructions" class="form-label">Instructions:</label>
+            <textarea class="form-control" name="instructions" rows="3" value="instructions">{{recipe.instructions}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="date_made" class="form-label">Date Made:</label>
+            <input type="date" class="form-control" name="date_made" rows="3" value="{{recipe.date_made}}">
+        </div>
+        <div class="mb-3">
+            <label for="under_30" class="form-label">Under 30 minutes?</label>
+            <input type="radio" name="under_30" value="1" id="yes"> Yes
+            <input type="radio" name="under_30" value="0" id="no"> No
+        </div>
+        <input type="hidden" name="id" value="{{recipe.id}}">
+        <input type="submit" value="Submit">
+        {%with messages = get_flashed_messages()%}
+                {%if messages%}
+                    {%for message in messages%}
+                        <p>{{message}}</p>
+                    {%endfor%}
+                {%endif%}
+            {%endwith%}
+    </form>  
+</body>
+</html>
